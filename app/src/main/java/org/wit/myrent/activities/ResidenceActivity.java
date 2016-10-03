@@ -50,6 +50,8 @@ public class ResidenceActivity extends AppCompatActivity implements TextWatcher,
 
   private Portfolio portfolio;
 
+  private String emailAddress = "";
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -125,7 +127,7 @@ public class ResidenceActivity extends AppCompatActivity implements TextWatcher,
         break;
 
       case R.id.residence_reportButton :
-        sendEmail(this, "", getString(R.string.residence_report_subject), residence.getResidenceReport(this));
+        sendEmail(this, "emailAddress", getString(R.string.residence_report_subject), residence.getResidenceReport(this));
         break;
     }
   }
@@ -158,15 +160,17 @@ public class ResidenceActivity extends AppCompatActivity implements TextWatcher,
   @Override
   public void onActivityResult(int requestCode, int resultCode, Intent data)
   {
+    if (resultCode != Activity.RESULT_OK) {
+      return;
+    }
+
     switch (requestCode)
     {
       case REQUEST_CONTACT:
-        String name = "Empty contact list";
-        if(data != null) {
-          name = getContact(this, data);
-        }
+        String name = ContactHelper.getContact(this, data);
+        emailAddress = ContactHelper.getEmail(this, data);
+        tenantButton.setText(name + " : " + emailAddress);
         residence.tenant = name;
-        tenantButton.setText(name);
         break;
     }
   }
