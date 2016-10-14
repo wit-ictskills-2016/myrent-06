@@ -56,7 +56,6 @@ public class ResidenceActivity extends AppCompatActivity implements TextWatcher,
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_residence);
-    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     geolocation = (EditText) findViewById(R.id.geolocation);
     residence = new Residence();
