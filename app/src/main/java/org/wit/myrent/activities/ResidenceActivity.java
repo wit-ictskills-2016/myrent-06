@@ -3,7 +3,6 @@ package org.wit.myrent.activities;
 import android.Manifest;
 import android.app.Activity;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -41,9 +40,6 @@ import static org.wit.android.helpers.ContactHelper.sendEmail;
 
 import android.content.Intent;
 
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.common.api.GoogleApiClient;
 
 public class ResidenceActivity extends AppCompatActivity implements TextWatcher,
     CompoundButton.OnCheckedChangeListener,
@@ -65,11 +61,6 @@ public class ResidenceActivity extends AppCompatActivity implements TextWatcher,
   private Portfolio portfolio;
 
   private String emailAddress = "";
-  /**
-   * ATTENTION: This was auto-generated to implement the App Indexing API.
-   * See https://g.co/AppIndexing/AndroidStudio for more information.
-   */
-  private GoogleApiClient client;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -96,9 +87,6 @@ public class ResidenceActivity extends AppCompatActivity implements TextWatcher,
     if (residence != null) {
       updateControls(residence);
     }
-    // ATTENTION: This was auto-generated to implement the App Indexing API.
-    // See https://g.co/AppIndexing/AndroidStudio for more information.
-    client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
   }
 
   public void updateControls(Residence residence) {
