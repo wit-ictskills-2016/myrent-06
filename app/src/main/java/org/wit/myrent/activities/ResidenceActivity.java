@@ -1,5 +1,6 @@
 package org.wit.myrent.activities;
 
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -12,6 +13,7 @@ import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
+import org.wit.android.helpers.ContactHelper;
 import org.wit.myrent.R;
 import org.wit.myrent.app.MyRentApp;
 import org.wit.myrent.models.Portfolio;
@@ -126,7 +128,8 @@ public class ResidenceActivity extends AppCompatActivity implements TextWatcher,
         break;
 
       case R.id.residence_reportButton :
-        sendEmail(this, "emailAddress", getString(R.string.residence_report_subject), residence.getResidenceReport(this));
+        if(emailAddress == null) emailAddress = "unable to read email address";
+        sendEmail(this, emailAddress, getString(R.string.residence_report_subject), residence.getResidenceReport(this));
         break;
     }
   }
